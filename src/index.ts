@@ -8,6 +8,7 @@ import { artistRoutes } from './routes/artist.routes';
 import { eventRoutes } from './routes/event.routes';
 import { bookingRoutes } from './routes/booking.routes';
 import { errorHandler } from './middleware/error.middleware';
+import { rateLimit } from './middleware/rate-limit.middleware';
 
 dotenv.config();
 
@@ -18,6 +19,7 @@ const port = process.env.PORT || 3000;
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(rateLimit());
 
 // Routes
 app.use('/api/auth', authRoutes);
